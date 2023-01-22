@@ -1,22 +1,24 @@
-import React from 'react';
+import React, {useState} from 'react';
+import { LoginUser } from '../../../interfaces/LoginUser';
+import { schemaLogin } from '../../../schemas/schemaLogin';
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
 import { Link } from 'react-router-dom';
 import Image from "../../../assets/avatar.png"
 import "./Login.css"
 
 const Login = () => {
 
-
-    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-        event.preventDefault();
-        const data = new FormData(event.currentTarget);
-        console.log({
-            email: data.get('email'),
-            password: data.get('password')
-        });
+    const {
+      register,
+      handleSubmit
+    } = useForm<LoginUser>({
+      resolver: yupResolver(schemaLogin),
+    });
+    const onSubmit = (data) => {
+        console.log(data);
     };
-
     
-
     return (
         <div className='login_container'>
             <div className='login_background'>
@@ -28,10 +30,10 @@ const Login = () => {
                 <p className='login_title'>
                     Sign In
                 </p>
-                <form noValidate onSubmit={handleSubmit} className='login_form'>
-                    <input name="email" id="email" className="input_string" type="text" placeholder="Email address" required>
+                <form noValidate onSubmit={handleSubmit(onSubmit)} className='login_form'>
+                    <input name="email" id="email" className="input_string" type="text" placeholder="Email address" required {...register("email")}>
                     </input>
-                    <input name="password" id="password" className="input_string" type="password" placeholder="Password" required>
+                    <input name="password" id="password" className="input_string" type="password" placeholder="Password" required {...register("password")}>
                     </input>
                     <div className='rem_button'>
                         <input type="checkbox" id="remember"></input>
