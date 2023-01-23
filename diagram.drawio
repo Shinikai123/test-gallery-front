@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2023-01-23T12:30:55.708Z" agent="5.0 (Windows)" etag="2rlNQ0gk6ZApr4YeAZl8" version="20.8.10" type="github">
+<mxfile host="app.diagrams.net" modified="2023-01-23T14:07:19.299Z" agent="5.0 (Windows)" etag="F1mSQvkKRA_NYfqy9jp-" version="20.8.10" type="github">
   <diagram name="Page-1" id="x4iJGQ0KPtCMB_jyQW9S">
-    <mxGraphModel dx="600" dy="323" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1235" dy="666" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -64,11 +64,29 @@
             <mxPoint x="490" y="160" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="8FAOilzrqgQx4W-jh3Jm-5" value="Access permission : Array / hstore" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="8FAOilzrqgQx4W-jh3Jm-6" value="fileName : text or uuid" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="360" y="280" width="160" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="8FAOilzrqgQx4W-jh3Jm-6" value="fileName : text or UUid" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="360" y="320" width="160" height="40" as="geometry" />
+        <mxCell id="8FAOilzrqgQx4W-jh3Jm-7" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="640" y="80" width="120" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="8FAOilzrqgQx4W-jh3Jm-8" value="Access" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dedede;" vertex="1" parent="1">
+          <mxGeometry x="640" y="80" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="8FAOilzrqgQx4W-jh3Jm-5" value="&lt;div&gt;access permission : Array&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="640" y="200" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="8FAOilzrqgQx4W-jh3Jm-9" value="fileName : text or uuid" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="640" y="120" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="8FAOilzrqgQx4W-jh3Jm-10" value="Access status: text" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="640" y="160" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="8FAOilzrqgQx4W-jh3Jm-13" value="" style="edgeStyle=entityRelationEdgeStyle;fontSize=12;html=1;endArrow=ERmandOne;startArrow=ERmandOne;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="uvVCpmAjIxrzyu7uWYnQ-104">
+          <mxGeometry width="100" height="100" relative="1" as="geometry">
+            <mxPoint x="540" y="240" as="sourcePoint" />
+            <mxPoint x="640" y="140" as="targetPoint" />
+          </mxGeometry>
         </mxCell>
       </root>
     </mxGraphModel>
