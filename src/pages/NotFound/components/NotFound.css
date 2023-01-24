@@ -1,0 +1,9 @@
+.not_found_background{
+    width: 100vw;
+    position: absolute;
+    height: 100vh;
+    background: url(../../../assets/not-found-background.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    transition: 1s;
+}

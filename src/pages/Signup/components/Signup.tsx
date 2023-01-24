@@ -14,7 +14,7 @@ const Signup = () => {
       } = useForm<RegisterUser>({
         resolver: yupResolver(schemaRegistration),
       });
-      const onSubmit = (data) => {
+      const onSubmit = (data: any) => {
         console.log(data);
     }
     
