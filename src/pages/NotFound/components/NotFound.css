@@ -1,9 +1,61 @@
 .not_found_background{
-    width: 100vw;
-    position: absolute;
+    display: flex;
+    margin: 0;
     height: 100vh;
+    width: 100vw;
     background: url(../../../assets/not-found-background.png);
     background-size: cover;
     background-repeat: no-repeat;
-    transition: 1s;
+    color: #F5F6F5;
+}
+
+.not_found_text{
+    display: flex;
+    flex-wrap: wrap;
+    position: absolute;
+    left: 200px;
+    top: 200px;
+    width: 40vw;
+}
+
+
+.not_found_description{
+    flex-wrap: wrap;
+    position: absolute;
+    width: 40vw;
+    font-size: 24px;
+    justify-content: center;
+    align-items: center;
+    text-align: flex-start;
+}
+
+.not_found_button{
+    padding: 20px;
+    position: relative;
+    left: 35%;
+    margin-top: 40px;
+    font-size: 32px;
+    border-radius: 20px;
+    outline: none;
+    background-color: #7F9E79;
+    border: none;
+    color: #F5F6F5;
+    cursor: pointer;
+    transform: 1s;
+    transition: ease all .5s;
+}
+
+.not_found_button:hover{
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    background-color: #AEC9A9;
+    color: #22242B;
+    scale: 1.2;
+}
+
+
+.not_found_copyright{
+    position: absolute;
+    bottom:  10px;
+    left: 20px;
+    font-size: 16px;
 }
