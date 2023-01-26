@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Link } from 'react-router-dom';
@@ -8,15 +8,25 @@ import { RegisterUser } from '../../../interfaces/RegisterUser';
 import "./Signup.css"
 
 const Signup = () => {
-    const {
-        register,
-        handleSubmit
-      } = useForm<RegisterUser>({
-        resolver: yupResolver(schemaRegistration),
-      });
-      const onSubmit = (data: any) => {
-        console.log(data);
-    }
+    useEffect(() => {
+        const getAPI = () => {
+            const API = 'localhost:8000/';
+
+            fetch(API)
+            .then((response) => {
+                console.log(response);
+                return response.json();
+            })
+            .then((data) => {
+                console.log(data);
+                setLoading(false);
+                setApiData(data);
+            });
+        };
+        getAPI();
+    }, []);
+    const [apiData ,setApiData] = useState([]);
+    const [loading, setLoading] = useState(true);
     
     return (
         <div className='signup_container'>
@@ -29,14 +39,14 @@ const Signup = () => {
                 <p className='signup_title'>
                     Sign Up
                 </p>
-                <form noValidate onSubmit={handleSubmit(onSubmit)} className='signup_form'>
-                    <input id="nickname" className="input_string" type="text" placeholder="Nickname" {...register("nickName")}>
+                <form method ="POST" action="localhost:8000/users/registration" className='signup_form'>
+                    <input id="user_name" className="input_string" type="text" placeholder="Nickname" required>
                     </input>
-                    <input id="email" className="input_string" type="text" placeholder="Email address" {...register("email")}>
+                    <input id="user_email" className="input_string" type="text" placeholder="Email address" required>
                     </input>
-                    <input id="password" className="input_string" type="password" placeholder="Password" {...register("password")}>
+                    <input id="password" className="input_string" type="password" placeholder="Password" required>
                     </input>
-                    <input id="confirmPassword" className="input_string" type="password" placeholder="Confirm Password" {...register("confirmPassword")}>
+                    <input id="confirmPassword" className="input_string" type="password" placeholder="Confirm Password" required>
                     </input>
                     <div className='rem_button'>
                         <input type="checkbox" id="remember"></input>

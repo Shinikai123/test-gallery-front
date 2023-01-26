@@ -2,8 +2,8 @@ import * as yup from "yup";
 
 export const schemaRegistration = yup
   .object({
-    nickName: yup.string().required(),
-    email: yup.string().required("Email is required").email("Email is invalid"),
+    user_name: yup.string().required(),
+    user_email: yup.string().required("Email is required").email("Email is invalid"),
     password: yup
       .string()
       .required("Password is required")
