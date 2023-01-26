@@ -10,7 +10,7 @@ import "./Signup.css"
 const Signup = () => {
     useEffect(() => {
         const getAPI = () => {
-            const API = 'localhost:8000/';
+            const API = 'http://localhost:8000/';
 
             fetch(API)
             .then((response) => {
@@ -39,15 +39,14 @@ const Signup = () => {
                 <p className='signup_title'>
                     Sign Up
                 </p>
-                <form method ="POST" action="localhost:8000/users/registration" className='signup_form'>
-                    <input id="user_name" className="input_string" type="text" placeholder="Nickname" required>
+                <form method ="POST" action="http://localhost:8000/users/add-user" className='signup_form'>
+                    <input name="userName" className="input_string" type="text" placeholder="Nickname" required>
                     </input>
-                    <input id="user_email" className="input_string" type="text" placeholder="Email address" required>
+                    <input name="userEmail" className="input_string" type="text" placeholder="Email address" required>
                     </input>
-                    <input id="password" className="input_string" type="password" placeholder="Password" required>
+                    <input name="userPassword" className="input_string" type="text" placeholder="Password" required>
                     </input>
-                    <input id="confirmPassword" className="input_string" type="password" placeholder="Confirm Password" required>
-                    </input>
+                    
                     <div className='rem_button'>
                         <input type="checkbox" id="remember"></input>
                         <label htmlFor="remember">Remember me</label>
