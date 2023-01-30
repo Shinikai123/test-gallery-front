@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { LoginUser } from '../../../interfaces/LoginUser';
+import { LoginUser } from '../../../interfaces/User';
 import { schemaLogin } from '../../../schemas/schemaLogin';
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -8,17 +8,6 @@ import Image from "../../../assets/avatar.png"
 import "./Login.css"
 
 const Login = () => {
-
-    const {
-      register,
-      handleSubmit
-    } = useForm<LoginUser>({
-      resolver: yupResolver(schemaLogin),
-    });
-    const onSubmit = (data) => {
-        console.log(data);
-    };
-    
     return (
         <div className='login_container'>
             <div className='login_background'>
@@ -30,10 +19,10 @@ const Login = () => {
                 <p className='login_title'>
                     Sign In
                 </p>
-                <form noValidate onSubmit={handleSubmit(onSubmit)} className='login_form'>
-                    <input name="email" id="email" className="input_string" type="text" placeholder="Email address" required {...register("email")}>
+                <form method="post" action='http://localhost:8000/users/add-user' className='login_form'>
+                    <input name="email" className="input_string" type="text" placeholder="Email address" required {...register("email")}>
                     </input>
-                    <input name="password" id="password" className="input_string" type="password" placeholder="Password" required {...register("password")}>
+                    <input name="password" className="input_string" type="password" placeholder="Password" required {...register("password")}>
                     </input>
                     <div className='rem_button'>
                         <input type="checkbox" id="remember"></input>

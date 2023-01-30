@@ -1,33 +1,51 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, FC} from 'react';
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Image from "../../../assets/avatar.png";
 import { schemaRegistration } from '../../../schemas/schemaRegistration';
-import { RegisterUser } from '../../../interfaces/RegisterUser';
+import { IRegisterUser} from '../../../store/types/RegisterUser';
+import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
+import authService from '../../../services/authService';
+import { loginUser } from '../../../store/reducers/authSlice';
 import "./Signup.css"
 
-const Signup = () => {
-    useEffect(() => {
-        const getAPI = () => {
-            const API = 'http://localhost:8000/';
+const Signup : FC = () => {
 
-            fetch(API)
-            .then((response) => {
-                console.log(response);
-                return response.json();
-            })
-            .then((data) => {
-                console.log(data);
-                setLoading(false);
-                setApiData(data);
+    const {error} = useAppSelector((state) => state.auth);
+    const [err, setErr] = useState(error);
+    const [isLoading, setIsLoading] = useState(false);
+    const dispatch = useAppDispatch();
+    const navigate = useNavigate();
+
+    const 
+    {register, handleSubmit, formState: { errors},} = 
+    useForm<IRegisterUser>({resolver: yupResolver(schemaRegistration),
+    });
+    const onSubmit = async (data : any) => {
+        setIsLoading(true);
+        const {userName, email, password} = data;
+        try {
+            const response = await authService.registerUser({
+                userName, email, password,
             });
-        };
-        getAPI();
-    }, []);
-    const [apiData ,setApiData] = useState([]);
-    const [loading, setLoading] = useState(true);
-    
+            if(!response.error) {
+                localStorage.setItem("token", response.accessToken);
+                localStorage.setItem("isLogged", "true");
+                dispatch(loginUser(data));
+                navigate(`/${response.id}`);
+            } else {
+                setErr (response.error);
+            }
+        } catch (e : any) {
+            console.log(e.error)
+            setErr(e.error);
+        } finally {
+            setIsLoading(false);
+        }
+    }
+
+
     return (
         <div className='signup_container'>
             <div className='signup_background'>
@@ -39,12 +57,14 @@ const Signup = () => {
                 <p className='signup_title'>
                     Sign Up
                 </p>
-                <form method ="POST" action="http://localhost:8000/users/add-user" className='signup_form'>
-                    <input name="userName" className="input_string" type="text" placeholder="Nickname" required>
+                <form onSubmit={handleSubmit(onSubmit)} className='signup_form'>
+                    <input name="userName" className="input_string" type="text" placeholder="Nickname" required {...register('userName')}>
                     </input>
-                    <input name="userEmail" className="input_string" type="text" placeholder="Email address" required>
+                    <input name="userEmail" className="input_string" type="text" placeholder="Email address" required {...register('email')}>
                     </input>
-                    <input name="userPassword" className="input_string" type="text" placeholder="Password" required>
+                    <input name="userPassword" className="input_string" type="text" placeholder="Password" required {...register('password')}>
+                    </input>
+                    <input name="confirmPassword" className="input_string" type="text" placeholder="Confirm Password" required {...register('confirmPassword')}>
                     </input>
                     
                     <div className='rem_button'>
@@ -53,6 +73,7 @@ const Signup = () => {
                     </div>
                     <input className="submit_button" type="submit" value="Sign Up"></input>
                 </form>
+                <Link to="/auth/login">Have an account? Just sign in</Link>
                 <p className='signup_copyright'>
                     Innowise {new Date().getFullYear()} |  <a href="https://github.com/Shinikai123"> Andrew Mihaylov</a>
                 </p>
