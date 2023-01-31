@@ -9,10 +9,6 @@ import { useEffect } from "react";
 
 const Profile = () => {
 
-    useEffect(() => {
-    const disabledNickName = document.getElementById('profile_nickname').setAttribute("disabled", '');
-    const disabledEmail = document.getElementById('profile_email').setAttribute("disabled", '');
-    })
     return(
         <div className="profile_background">
             <Header/>
@@ -33,11 +29,11 @@ const Profile = () => {
                         <p>User Information</p>
                         <div className="profile_account_info_left_search_string">
                         <label>Nickname</label>
-                        <input id="profile_nickname"type="text" value="Nickname"></input>
+                        <input id="user_name"type="text" ></input>
                         </div>
                         <div className="profile_account_info_left_search_string">
                         <label>Email</label>
-                        <input id="profile_email" type="text" value="Email"></input>
+                        <input id="user_email" type="text" ></input>
                         </div>
                     </div>
                 </div>

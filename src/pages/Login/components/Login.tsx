@@ -1,13 +1,50 @@
-import React, {useState} from 'react';
-import { LoginUser } from '../../../interfaces/User';
+import React, {useState, useEffect, FC} from 'react';
+import { useForm } from 'react-hook-form';
+import { ILoginUser } from '../../../store/types/LoginUser';
 import { schemaLogin } from '../../../schemas/schemaLogin';
-import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { Link } from 'react-router-dom';
-import Image from "../../../assets/avatar.png"
+import { Link, useNavigate } from 'react-router-dom';
+import Image from "../../../assets/avatar.png";
+import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
+import authService from '../../../services/authService';
+import { loginUser } from '../../../store/reducers/authSlice';
 import "./Login.css"
 
-const Login = () => {
+const Login: FC = () => {
+    const {error} = useAppSelector((state) => state.auth);
+    const [err, setErr] = useState(error);
+    const [isLoading, setIsLoading] = useState(false);
+    const dispatch = useAppDispatch();
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        setErr(error);
+    }, [error]);
+
+    const 
+    {register, handleSubmit, formState: {errors},} =
+        useForm<ILoginUser>({
+            resolver: yupResolver(schemaLogin),
+        });
+
+    const onSubmit = async (data) => {
+        setIsLoading(true);
+        try{
+            const response = await authService.loginUser(data);
+            if(!response.error) {
+                localStorage.setItem("token", response.accessToken);
+                await dispatch(loginUser(data));
+                navigate(`/${response.id}`);
+            } else {
+                setErr(response.error);
+            }
+        } catch(e) {
+            console.log(e);
+        } finally {
+            setIsLoading(false);
+        }
+    }
+
     return (
         <div className='login_container'>
             <div className='login_background'>
@@ -19,8 +56,8 @@ const Login = () => {
                 <p className='login_title'>
                     Sign In
                 </p>
-                <form method="post" action='http://localhost:8000/users/add-user' className='login_form'>
-                    <input name="email" className="input_string" type="text" placeholder="Email address" required {...register("email")}>
+                <form onSubmit = {handleSubmit(onSubmit)} className='login_form'>
+                    <input name="email" className="input_string" type="email" placeholder="Email address" required {...register("email")}>
                     </input>
                     <input name="password" className="input_string" type="password" placeholder="Password" required {...register("password")}>
                     </input>
@@ -30,7 +67,7 @@ const Login = () => {
                     </div>
                     <input className="submit_button" type="submit" value="Sign In"></input>
                 </form>
-                <Link to="/signup">
+                <Link to="/registration">
                     <p>
                         Don't have an account? Sign up now
                     </p>

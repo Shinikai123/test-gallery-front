@@ -8,9 +8,9 @@ import { IRegisterUser} from '../../../store/types/RegisterUser';
 import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
 import authService from '../../../services/authService';
 import { loginUser } from '../../../store/reducers/authSlice';
-import "./Signup.css"
+import "./Registration.css"
 
-const Signup : FC = () => {
+const Registration : FC = () => {
 
     const {error} = useAppSelector((state) => state.auth);
     const [err, setErr] = useState(error);
@@ -31,7 +31,6 @@ const Signup : FC = () => {
             });
             if(!response.error) {
                 localStorage.setItem("token", response.accessToken);
-                localStorage.setItem("isLogged", "true");
                 dispatch(loginUser(data));
                 navigate(`/${response.id}`);
             } else {
@@ -67,13 +66,9 @@ const Signup : FC = () => {
                     <input name="confirmPassword" className="input_string" type="text" placeholder="Confirm Password" required {...register('confirmPassword')}>
                     </input>
                     
-                    <div className='rem_button'>
-                        <input type="checkbox" id="remember"></input>
-                        <label htmlFor="remember">Remember me</label>
-                    </div>
                     <input className="submit_button" type="submit" value="Sign Up"></input>
                 </form>
-                <Link to="/auth/login">Have an account? Just sign in</Link>
+                <Link to="/login">Have an account? Just sign in</Link>
                 <p className='signup_copyright'>
                     Innowise {new Date().getFullYear()} |  <a href="https://github.com/Shinikai123"> Andrew Mihaylov</a>
                 </p>
@@ -82,4 +77,4 @@ const Signup : FC = () => {
     )
 }
 
-export default Signup;
+export default Registration;

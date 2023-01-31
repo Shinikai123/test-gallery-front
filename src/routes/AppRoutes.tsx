@@ -4,7 +4,7 @@ import Home from "../pages/Home";
 import Login from "../pages/Login";
 import NotFound from "../pages/NotFound";
 import Profile from "../pages/Profile";
-import Signup from "../pages/Signup";
+import Registration from "../pages/Registration";
 
 const AppRoutes = () => {
     return(
@@ -13,7 +13,7 @@ const AppRoutes = () => {
         <Routes>
         <Route path="/" element={<Home/>}/>
             <Route path="/login" element={<Login/>}/>
-            <Route path="/signup" element={<Signup/>}></Route>
+            <Route path="/registration" element={<Registration/>}></Route>
             <Route path="/profile" element={<Profile/>}></Route>
         <Route path='*' element={<NotFound />}/>
         </Routes>

@@ -4,7 +4,7 @@ import
 from "../interfaces/Auth";
 import { IUser } from "../interfaces/User";
 
-class AuthApiService extends ApiService {
+class AuthService extends ApiService {
   constructor() {
     super();
   }
@@ -50,4 +50,4 @@ class AuthApiService extends ApiService {
   };
 }
 
-export default new AuthApiService();
+export default new AuthService();

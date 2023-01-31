@@ -6,14 +6,14 @@ import jwt_decode from "jwt-decode";
 import { ILoginData } from "../../interfaces/Auth";
 
 export const logoutUser = createAsyncThunk(
-  "auth/logoutUser",
+  "/logoutUser",
   async function (_, thunkAPI) {
     return await AuthService.logoutUser();
   }
 );
 
 export const loginUser = createAsyncThunk(
-  "auth/login",
+  "/login",
   async (body: ILoginData, thunkAPI) => {
     try {
       const response = await AuthService.loginUser(body);
@@ -26,7 +26,7 @@ export const loginUser = createAsyncThunk(
 );
 
 export const refreshToken = createAsyncThunk(
-  "auth/refreshToken",
+  "/refreshToken",
   async function (_, { dispatch, rejectWithValue }) {
     try {
       const res = await AuthService.refreshToken();
@@ -116,8 +116,6 @@ const authSlice = createSlice({
       })
       .addCase(refreshToken.rejected, (state) => {
         state.status = FetchStatus.REJECTED;
-        // state.error = "Something wrong";
-        // authSlice.caseReducers.clearUserData(state);
       });
   },
 });
