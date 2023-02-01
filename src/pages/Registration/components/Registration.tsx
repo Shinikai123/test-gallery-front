@@ -10,8 +10,24 @@ import authService from '../../../services/authService';
 import { loginUser } from '../../../store/reducers/authSlice';
 import "./Registration.css"
 
+
+
 const Registration : FC = () => {
 
+    const signup = () => {
+        {isLoading}
+    }
+
+    useEffect(() => {
+      const isLoggedLocalStorage = JSON.parse(
+        localStorage.getItem("isLogged") as string
+      );
+  
+      if (isLoggedLocalStorage) {
+        navigate("/");
+      }
+    }, []);
+  
     const {error} = useAppSelector((state) => state.auth);
     const [err, setErr] = useState(error);
     const [isLoading, setIsLoading] = useState(false);
@@ -19,7 +35,7 @@ const Registration : FC = () => {
     const navigate = useNavigate();
 
     const 
-    {register, handleSubmit, formState: { errors},} = 
+    {register, handleSubmit, formState: {errors},} = 
     useForm<IRegisterUser>({resolver: yupResolver(schemaRegistration),
     });
     const onSubmit = async (data : any) => {
@@ -66,7 +82,7 @@ const Registration : FC = () => {
                     <input name="confirmPassword" className="input_string" type="text" placeholder="Confirm Password" required {...register('confirmPassword')}>
                     </input>
                     
-                    <input className="submit_button" type="submit" value="Sign Up"></input>
+                    <input className="submit_button" type="submit" value="Sign Up" {...signup}></input>
                 </form>
                 <Link to="/login">Have an account? Just sign in</Link>
                 <p className='signup_copyright'>

@@ -5,7 +5,7 @@ abstract class ApiService {
     baseURL: `http://localhost:8000`,
     withCredentials: true,
     headers: {
-      "Content-Type": "application/json",
+      
     },
   });
 
