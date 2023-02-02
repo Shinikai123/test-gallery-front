@@ -31,10 +31,15 @@ const Login: FC = () => {
         setIsLoading(true);
         try{
             const response = await authService.loginUser(data);
+
             if(!response.error) {
                 localStorage.setItem("token", response.accessToken);
+                
+                
                 await dispatch(loginUser(data));
-                navigate(`/${response.id}`);
+                
+                   
+                navigate(`/profile/${response.id}`);
             } else {
                 setErr(response.error);
             }
@@ -57,9 +62,9 @@ const Login: FC = () => {
                     Sign In
                 </p>
                 <form onSubmit = {handleSubmit(onSubmit)} className='login_form'>
-                    <input name="email" className="input_string" type="email" placeholder="Email address" required {...register("email")}>
+                    <input className="input_string" type="email" placeholder="Email address" required {...register("user_email")}>
                     </input>
-                    <input name="password" className="input_string" type="password" placeholder="Password" required {...register("password")}>
+                    <input className="input_string" type="password" placeholder="Password" required {...register("password")}>
                     </input>
                     <div className='rem_button'>
                         <input type="checkbox" id="remember"></input>

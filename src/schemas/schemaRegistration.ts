@@ -2,7 +2,10 @@ import * as yup from "yup";
 
 export const schemaRegistration = yup
   .object({
-    user_name: yup.string().required(),
+    user_name: yup
+      .string()
+      .required("Name is required")
+      .trim("Name cannot include leading and trailing spaces"),
     user_email: yup.string().required("Email is required").email("Email is invalid"),
     password: yup
       .string()

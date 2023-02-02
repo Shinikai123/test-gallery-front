@@ -9,8 +9,8 @@ export interface IUserState {
 
 export interface IUser {
     id: string | null;
-    userName: string | null;
-    email?: string | null;
+    user_name: string | null;
+    user_email?: string | null;
     avatar?: string | null;
     error?: string;
 }

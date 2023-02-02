@@ -43,8 +43,8 @@ export const refreshToken = createAsyncThunk(
 const initialState: IUserState = {
   user: {
     id: null,
-    userName: null,
-    email: null,
+    user_name: null,
+    user_email: null,
     avatar: null,
   },
   error: "",
@@ -64,8 +64,8 @@ const authSlice = createSlice({
     clearUserData(state) {
       state.user = {
         id: null,
-        userName: null,
-        email: null,
+        user_name: null,
+        user_email: null,
         avatar: null,
       };
       state.token = "";
@@ -80,9 +80,9 @@ const authSlice = createSlice({
       })
       .addCase(loginUser.fulfilled, (state, action: PayloadAction<any>) => {
         state.status = FetchStatus.RESOLVED;
-        const { id, userName, email, accessToken } = action.payload;
-        state.user.email = email;
-        state.user.userName = userName;
+        const { id, user_name, user_email, accessToken } = action.payload;
+        state.user.user_email = user_email;
+        state.user.user_name = user_name;
         state.user.id = id;
         state.token = accessToken;
         authSlice.caseReducers.setUserData(state, action);
@@ -107,9 +107,9 @@ const authSlice = createSlice({
       })
       .addCase(refreshToken.fulfilled, (state, action: PayloadAction<any>) => {
         state.status = FetchStatus.RESOLVED;
-        const { id, userName, email, accessToken } = action.payload;
-        state.user.email = email;
-        state.user.userName = userName;
+        const { id, user_name, user_email, accessToken } = action.payload;
+        state.user.user_email = user_email;
+        state.user.user_name = user_name;
         state.user.id = id;
         state.token = accessToken;
         authSlice.caseReducers.setUserData(state, action);

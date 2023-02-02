@@ -1,5 +1,5 @@
 export interface ILoginData {
-    email : string;
+    user_email : string;
     password: string;
 }
 
@@ -11,25 +11,25 @@ export interface IToken {
 
 export interface ILoginResponse extends IToken {
     id: string;
-    userName : string;
+    user_name : string;
     email: string;
 }
 
 export interface IRegisterResponse extends IToken {
     id: string;
-    userName: string;
+    user_name: string;
     email: string;
 }
 
 export interface IRegisterData {
-    userName: string;
-    email: string;
+    user_name: string;
+    user_email: string;
     password: string;
 }
 
 export interface IFulfilledAction {
     id: string;
-    userName: string;
-    email: string;
+    user_name: string;
+    user_email: string;
     token: IToken;
 }

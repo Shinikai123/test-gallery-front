@@ -10,7 +10,7 @@ import Avatar from "../../../assets/avatar.png"
 import "./Header.css"
 
 const Header : FC = () => {
-    const {userName, id} = useAppSelector((state : any) => state.auth.user);
+    const { id} = useAppSelector((state : any) => state.auth.user);
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
 
@@ -55,7 +55,7 @@ const Header : FC = () => {
                     <button className="button_log_out">Log out</button>
                 </Link>
                 <Link to={`/profile/${id}`}>
-                    <button className="button_profile"> {userName}</button>
+                    <button className="button_profile"> Profile</button>
                 </Link>
                 </div>
             </div>

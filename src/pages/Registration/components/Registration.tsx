@@ -14,9 +14,6 @@ import "./Registration.css"
 
 const Registration : FC = () => {
 
-    const signup = () => {
-        {isLoading}
-    }
 
     useEffect(() => {
       const isLoggedLocalStorage = JSON.parse(
@@ -38,12 +35,12 @@ const Registration : FC = () => {
     {register, handleSubmit, formState: {errors},} = 
     useForm<IRegisterUser>({resolver: yupResolver(schemaRegistration),
     });
-    const onSubmit = async (data : any) => {
+    const onSubmit = async (data) => {
         setIsLoading(true);
-        const {userName, email, password} = data;
+        const {user_name, user_email, password} = data;
         try {
             const response = await authService.registerUser({
-                userName, email, password,
+                user_name, user_email, password,
             });
             if(!response.error) {
                 localStorage.setItem("token", response.accessToken);
@@ -72,17 +69,17 @@ const Registration : FC = () => {
                 <p className='signup_title'>
                     Sign Up
                 </p>
-                <form onSubmit={handleSubmit(onSubmit)} className='signup_form'>
-                    <input name="userName" className="input_string" type="text" placeholder="Nickname" required {...register('userName')}>
+                <form onSubmit={handleSubmit(onSubmit)} action='/register' className='signup_form'>
+                    <input  className="input_string" type="text" placeholder="Nickname" required {...register('user_name')}>
                     </input>
-                    <input name="userEmail" className="input_string" type="text" placeholder="Email address" required {...register('email')}>
+                    <input  className="input_string" type="text" placeholder="Email address" required {...register('user_email')}>
                     </input>
-                    <input name="userPassword" className="input_string" type="text" placeholder="Password" required {...register('password')}>
+                    <input className="input_string" type="text" placeholder="Password" required {...register('password')}>
                     </input>
-                    <input name="confirmPassword" className="input_string" type="text" placeholder="Confirm Password" required {...register('confirmPassword')}>
+                    <input  className="input_string" type="text" placeholder="Confirm Password" required {...register('confirmPassword')}>
                     </input>
                     
-                    <input className="submit_button" type="submit" value="Sign Up" {...signup}></input>
+                    <button className="submit_button" type="submit">Sign Up</button>
                 </form>
                 <Link to="/login">Have an account? Just sign in</Link>
                 <p className='signup_copyright'>
