@@ -45,7 +45,7 @@ const Registration : FC = () => {
             if(!response.error) {
                 localStorage.setItem("token", response.accessToken);
                 dispatch(loginUser(data));
-                navigate(`/${response.id}`);
+                navigate(`/profile/${response.id}`);
             } else {
                 setErr (response.error);
             }
@@ -76,10 +76,10 @@ const Registration : FC = () => {
                     </input>
                     <input className="input_string" type="text" placeholder="Password" required {...register('password')}>
                     </input>
+                    <label>The required password length must be between 6 and 40 characters</label>
                     <input  className="input_string" type="text" placeholder="Confirm Password" required {...register('confirmPassword')}>
                     </input>
-                    
-                    <button className="submit_button" type="submit">Sign Up</button>
+                    <input className="submit_button" type="submit" value="Sign Up"></input>
                 </form>
                 <Link to="/login">Have an account? Just sign in</Link>
                 <p className='signup_copyright'>
