@@ -77,8 +77,19 @@ const Profile: FC = () => {
                     </div>
                 </div>
                 <div className="profile_account_videos">
-                    Videos
+                    <div className="profile_account_videos_header">
+                        <label className="profile_account_videos_header_label">Videos</label>
+                    <div>
+                    <form>
+                        <button className="upload_video_button">
+                            Upload Video
+                        </button>
+                    </form>
                 </div>
+                    </div>
+                    
+                </div>
+                
                 
             </div>
         </div>

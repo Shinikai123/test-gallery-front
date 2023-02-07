@@ -178,3 +178,34 @@
     margin: 2vw;
 }
 
+.profile_account_videos_header{
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+}
+
+.profile_account_videos_header_label{
+
+}
+
+.upload_video_button{
+    width: 120px;
+    height: 40px;
+    margin: 20px;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+    color: #F5F6F5;
+    background-color: #83BA96;
+    font-size: 16px;
+    cursor: pointer;
+    transition: ease all .5s;
+}
+
+.upload_video_button:hover{
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    background-color: #AEC9A9;
+    color: #22242B;
+    scale: 1.2;
+}
