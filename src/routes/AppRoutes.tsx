@@ -5,6 +5,7 @@ import Login from "../pages/Login";
 import NotFound from "../pages/NotFound";
 import Profile from "../pages/Profile";
 import Registration from "../pages/Registration";
+import Watch from "../pages/Watch";
 
 const AppRoutes = () => {
     return(
@@ -15,6 +16,7 @@ const AppRoutes = () => {
             <Route path="/login" element={<Login/>}/>
             <Route path="/registration" element={<Registration/>}></Route>
             <Route path="/profile/:userId" element={<Profile/>}></Route>
+            <Route path="/watch/:videoId" element={<Watch/>}></Route>
         <Route path='*' element={<NotFound />}/>
         </Routes>
       </BrowserRouter>

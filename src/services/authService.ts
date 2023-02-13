@@ -37,17 +37,17 @@ class AuthService extends ApiService {
   //   return this._get("registration/reset-password", { email });
   // };
 
-  sendNewPasswordAfterReset = (
-    user_email: string,
-    token: string,
-    password: string
-  ): Promise<void> => {
-    return this._post(
-      "registration/new-password",
-      { password },
-      { user_email, token }
-    );
-  };
+  // sendNewPasswordAfterReset = (
+  //   user_email: string,
+  //   token: string,
+  //   password: string
+  // ): Promise<void> => {
+  //   return this._post(
+  //     "registration/new-password",
+  //     { password },
+  //     { user_email, token }
+  //   );
+  // };
 }
 
 export default new AuthService();
