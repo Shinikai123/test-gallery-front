@@ -26,7 +26,7 @@ class VideoService extends ApiService {
     };
 
     deleteVideo = (videoId: string): Promise<any> => {
-        return this._get(`/remove/${videoId}`);
+        return this._get(`/delete/${videoId}`);
     };
 }
 

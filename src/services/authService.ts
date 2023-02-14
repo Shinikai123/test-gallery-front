@@ -2,7 +2,6 @@ import ApiService from "./apiService";
 import 
 {ILoginData, ILoginResponse, IRegisterData, IRegisterResponse, IToken}
 from "../interfaces/Auth";
-import { IUser } from "../interfaces/User";
 
 class AuthService extends ApiService {
   constructor() {
@@ -19,10 +18,6 @@ class AuthService extends ApiService {
 
   logoutUser = (): Promise<void> => {
     return this._get("logout");
-  };
-
-  getUserById = (id: string): Promise<IUser> => {
-    return this._get(`users/${id}`);
   };
 
   refreshToken = (): Promise<IToken> => {

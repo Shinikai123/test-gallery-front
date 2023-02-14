@@ -32,21 +32,19 @@ const VideoCard: FC<Props> = ({ title, videos, setVideos, id }) => {
     }
   };
 
-  const pageValidation = authUserId === userId;
+  // const handleEditMovie = async () => {
+  //   setIsEdit(true);
+  // };
 
-  const handleEditMovie = async () => {
-    setIsEdit(true);
-  };
-
-  const handleOpenUsers = async () => {
-    setOpen(true);
-    try {
-      const response = await userService.getUsers(10, token);
-      setUsers(response);
-    } catch (e) {
-      console.log(e);
-    }
-  };
+  // const handleOpenUsers = async () => {
+  //   setOpen(true);
+  //   try {
+  //     const response = await userService.getUsers(10, token);
+  //     setUsers(response);
+  //   } catch (e) {
+  //     console.log(e);
+  //   }
+  // };
 
   const getAccess = async () => {
     try {
@@ -68,20 +66,17 @@ const VideoCard: FC<Props> = ({ title, videos, setVideos, id }) => {
     <div className="video_card">
         <p className="video_card_title">{title}</p>
         <ReactPlayer
-            pip={true}
-            light={true}
-            url={`http://localhost:8000/api/${userId}/movies/${id}`}
+            url={`http://localhost:8000/users/${userId}/videos/${id}`}
             controls
-            width="100%"
-            height="22vh"
+            width="30vw"
+            height="40vh"
         />
-        {pageValidation && (
-        <div>
-            <input onClick={handleOpenUsers}></input>
-            <input onClick={handleEditMovie}></input>
-            <input onClick={handleDeleteVideo}></input>
-        </div>
-        )}
+        
+        <form>
+            {/* <input type="button" value="open" onClick={handleOpenUsers}></input> */}
+            {/* <input type="button" value="edit" onClick={handleEditMovie}></input> */}
+            <input type="button" value="delete" onClick={handleDeleteVideo}></input>
+        </form>
     </div>
     
   )};

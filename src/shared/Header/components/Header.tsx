@@ -1,4 +1,4 @@
-import React, {FC} from "react";
+import React, {FC, useState} from "react";
 import {useAppDispatch, useAppSelector} from '../../../hooks/redux';
 import { logoutUser } from "../../../store/reducers/authSlice";
 import { useNavigate } from "react-router-dom";
@@ -8,8 +8,10 @@ import Title from "../../../assets/Title.png";
 import Search from '../../../assets/search.png';
 import Avatar from "../../../assets/avatar.png"
 import "./Header.css"
+import { IUser } from "../../../interfaces/User";
 
 const Header : FC = () => {
+    const [user, setUser] = useState<IUser | null>(null);
     const { id} = useAppSelector((state : any) => state.auth.user);
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
@@ -49,7 +51,7 @@ const Header : FC = () => {
                     </form>
                 </div>
                 <div className="auth_section">
-                <img className="avatar" src={Avatar}></img>
+                <img className="avatar" src={ user?.avatar || Avatar}></img>
                 
                 <Link onClick={handleLogout}to="/login">
                     <button className="button_log_out">Log out</button>
