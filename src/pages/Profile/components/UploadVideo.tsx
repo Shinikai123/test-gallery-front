@@ -2,6 +2,7 @@ import { FC, useRef } from "react";
 import { useParams } from "react-router-dom";
 import { IVideo } from "../../../interfaces/Video";
 import videoService from "../../../services/videoService";
+import "./UploadVideo.css"
 
 type Props = {
     setVideos: (video: IVideo[]) => void;
@@ -32,7 +33,7 @@ const UploadVideo: FC<Props> = ({setVideos, videos}) => {
 
     return(
         <div>
-            <input multiple type="file" accept="video/*" ref={fileRef} onChange={handleVideoUpload}></input>
+            <input className="upload_video_button"  type="file" accept="video/*" ref={fileRef} onChange={handleVideoUpload} placeholder="Upload Video"></input>
         </div>
         )
 

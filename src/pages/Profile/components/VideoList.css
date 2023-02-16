@@ -1,0 +1,18 @@
+
+.video_list_header{
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+}
+
+.video_list_header_label{
+
+}
+
+.video_list_container{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+}

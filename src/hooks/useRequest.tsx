@@ -1,5 +1,6 @@
 import React, {FC, useState} from "react";
-import useSWR from 'swr'
+
+
 const UseRequest : (callback : any) => {
     response : any;
     sendRequest : (...payload : any) => Promise<any>;

@@ -6,6 +6,7 @@ import { IVideo } from "../../../interfaces/Video";
 import { useAppSelector } from "../../../hooks/redux";
 import { IUser } from "../../../interfaces/User";
 import userService from "../../../services/userService";
+import "./VideoCard.css"
 
 type Props = {
   videos: IVideo[];
@@ -68,14 +69,14 @@ const VideoCard: FC<Props> = ({ title, videos, setVideos, id }) => {
         <ReactPlayer
             url={`http://localhost:8000/users/${userId}/videos/${id}`}
             controls
-            width="30vw"
-            height="40vh"
+            width="20vw"
+            height="30vh"
         />
         
         <form>
-            {/* <input type="button" value="open" onClick={handleOpenUsers}></input> */}
+            {/* <input className="video_card_button" type="button" value="open" onClick={handleOpenUsers}></input> */}
             {/* <input type="button" value="edit" onClick={handleEditMovie}></input> */}
-            <input type="button" value="delete" onClick={handleDeleteVideo}></input>
+            <input className="video_card_button" type="button" value="delete" onClick={handleDeleteVideo}></input>
         </form>
     </div>
     

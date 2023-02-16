@@ -66,14 +66,10 @@ const Login: FC = () => {
                     </input>
                     <input className="input_string" type="password" placeholder="Password" required {...register("password")}>
                     </input>
-                    <div className='rem_button'>
-                        <input type="checkbox" id="remember"></input>
-                        <label htmlFor="remember">Remember me</label>
-                    </div>
                     <input className="submit_button" type="submit" value="Sign In"></input>
                 </form>
                 <Link to="/registration">
-                    <p>
+                    <p className='signup_link'>
                         Don't have an account? Sign up now
                     </p>
                 </Link>
