@@ -11,6 +11,8 @@
     font-size: 16px;
     cursor: pointer;
     transition: ease all .5s;
+    font-size: 20px;
+    padding: 10px;
 }
 
 .upload_video_button:hover{
@@ -18,4 +20,8 @@
     background-color: #AEC9A9;
     color: #22242B;
     scale: 1.2;
+}
+
+input[type='file'] {
+    display: none;
 }

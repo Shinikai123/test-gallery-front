@@ -1,5 +1,7 @@
 
 .video_list_header{
+    padding: 15px;
+    padding-top: 20px;
     display: flex;
     flex-direction: row;
     justify-content: start;
@@ -7,7 +9,7 @@
 }
 
 .video_list_header_label{
-
+    font-size: 16px;
 }
 
 .video_list_container{
