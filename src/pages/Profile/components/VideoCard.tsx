@@ -68,6 +68,9 @@ const VideoCard: FC<Props> = ({ title, videos, setVideos, id }) => {
         <p className="video_card_title">{title}</p>
         <ReactPlayer
             url={`http://localhost:8000/users/${userId}/videos/${id}`}
+            playing={false}
+            loop={true}
+            pip={true}
             controls
             width="20vw"
             height="30vh"
