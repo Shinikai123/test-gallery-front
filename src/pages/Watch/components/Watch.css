@@ -1,9 +1,0 @@
-.watch_background{
-    width: 100vw;
-    position: absolute;
-    height: 100vh;
-    background: url(../../../assets/profile-background.png);
-    background-size: cover;
-    background-repeat: no-repeat;
-    transition: 1s;
-}

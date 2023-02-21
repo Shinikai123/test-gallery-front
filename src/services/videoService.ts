@@ -21,6 +21,14 @@ class VideoService extends ApiService {
         return this._get<IAccess>(`access/${userId}`, {video_id});
     };
 
+    setAccess = (
+        userId: string,
+        videoId: string,
+        access
+    ) : Promise<string> => {
+        return this._post<string>(`access/${userId}`, {videoId, access});
+    }
+
     getUserVideos = (userId: string): Promise<IVideo[]> => {
         return this._get<IVideo[]>(`/users/${userId}/videos`);
     };
@@ -28,6 +36,10 @@ class VideoService extends ApiService {
     deleteVideo = (videoId: string): Promise<any> => {
         return this._get(`/delete/${videoId}`);
     };
+
+    updateVideo = (id: string, title: string): Promise<string> => {
+        return this._post(`video/${id}`, {title});
+    }
 }
 
 export default new VideoService();

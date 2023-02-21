@@ -10,7 +10,7 @@ class UserApiService extends ApiService {
     return this._get(`users/${user_id}`);
   };
 
-  getUsers = (limit: number, token): Promise<IUser[]> => {
+  getUsers = (token: string, limit?: number): Promise<IUser[]> => {
     return this._get("users", { limit }, token);
   };
 }

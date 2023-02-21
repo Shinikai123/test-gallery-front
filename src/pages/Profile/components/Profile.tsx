@@ -4,16 +4,19 @@ import Header from "../../../shared/Header/index";
 import { IUser } from "../../../interfaces/User";
 import "./Profile.css";
 import VideoList from "./VideoList";
+import { useAppSelector } from "../../../hooks/redux";
 
 const Profile: FC<any> = () => {
    
     const [user, setUser] = useState<IUser | null>(null);
-
+    const {user_name, user_email, avatar} = useAppSelector(
+        (state) => state.auth.user
+    )
     return(
         <div className="profile_background">
             <Header/>
                 <div className="account_title">
-                <h1>Hello, {user?.user_name}</h1>
+                <h1>Hello, {user_name}</h1>
                 <p>This is your profile page. Here you can check the info about you, add videos and set the access for other users.</p>
             </div>
             
@@ -29,7 +32,7 @@ const Profile: FC<any> = () => {
                         <p>User Information</p>
                         <div className="profile_account_info_left_search_string">
                         <label>Nickname : </label>
-                        <div id="user_name">{user?.user_email}</div>
+                        <div id="user_name">{user_name}</div>
                         </div>
                         
                     </div>

@@ -11,11 +11,12 @@ import "./VideoCard.css"
 type Props = {
   videos: IVideo[];
   setVideos: (iVideo: IVideo[]) => void;
-  title: string | undefined;
-  id: string | undefined;
+  title: string;
+  id: string ;
+  titleValue: string;
 };
 
-const VideoCard: FC<Props> = ({ title, videos, setVideos, id }) => {
+const VideoCard: FC<Props> = ({ title, videos, setVideos, id, titleValue }) => {
   const { userId } = useParams();
   const [open, setOpen] = useState(false);
   const [users, setUsers] = useState<IUser[]>([]);
@@ -37,15 +38,33 @@ const VideoCard: FC<Props> = ({ title, videos, setVideos, id }) => {
   //   setIsEdit(true);
   // };
 
-  // const handleOpenUsers = async () => {
-  //   setOpen(true);
-  //   try {
-  //     const response = await userService.getUsers(10, token);
-  //     setUsers(response);
+  // const handleSave = async () => {
+  //   try{
+  //     await videoService.updateVideo(id, titleValue);
+  //     const updatedVideos = videos.map((video) => {
+  //       return {
+  //         ...video,
+  //         title: video.id === id ? titleValue : video.title,
+  //       }
+  //     });
+  //     console.log(updatedVideos);
+  //     setVideos(updatedVideos);
   //   } catch (e) {
   //     console.log(e);
+  //   } finally{
+  //     setIsEdit(false);
   //   }
-  // };
+  // }
+
+  const handleOpenUsers = async () => {
+    setOpen(true);
+    try {
+      const response = await userService.getUsers(token, 10);
+      setUsers(response.filter((user) => user.id !== userId));
+    } catch (e) {
+      console.log(e);
+    }
+  };
 
   const getAccess = async () => {
     try {
@@ -77,10 +96,10 @@ const VideoCard: FC<Props> = ({ title, videos, setVideos, id }) => {
         />
         
         <form>
-            {/* <input className="video_card_button" type="button" value="open" onClick={handleOpenUsers}></input> */}
-            {/* <input type="button" value="edit" onClick={handleEditMovie}></input> */}
+            <input className="video_card_button" type="button" value="open" onClick={handleOpenUsers}></input>
             <input className="video_card_button" type="button" value="delete" onClick={handleDeleteVideo}></input>
-        </form>
+            <input className="video_card_button" type="button" value="edit"></input>
+          </form>
     </div>
     
   )};
