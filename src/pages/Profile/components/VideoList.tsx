@@ -46,7 +46,7 @@ const VideoList: FC = () => {
                     setVideos = {setVideos}
                     title = {video.title}
                     id= {video.id}/> 
-                    </div>
+                </div>
                 )})
             }
         </div>
