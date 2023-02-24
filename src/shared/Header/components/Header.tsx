@@ -15,8 +15,7 @@ type Props = {
   };
 
 const Header : FC<Props> = ({items}) => {
-    const [user, setUser] = useState<IUser | null>(null);
-    const { avatar, id} = useAppSelector((state : any) => state.auth.user);
+    const { avatar, id} = useAppSelector((state) => state.auth.user);
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
     const [filteredUsers, setFilteredUsers] = useState<IUser[]>(items);

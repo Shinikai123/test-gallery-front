@@ -4,6 +4,8 @@ import { FetchStatus } from "../interfaces/State";
 import AuthService from "../../services/authService";
 import jwt_decode from "jwt-decode";
 import { ILoginData } from "../../interfaces/Auth";
+import { RootState } from "../store";
+import userService from "../../services/userService";
 
 export const logoutUser = createAsyncThunk(
   "/logoutUser",
@@ -25,6 +27,19 @@ export const loginUser = createAsyncThunk(
   }
 );
 
+export const uploadAvatarAsync = createAsyncThunk(
+  "upload/uploadImage",
+  async (image: File, { getState,rejectWithValue}) => {
+    const userId = (getState() as RootState).auth.user.id;
+    try{
+      const res = await userService.uploadAvatar(userId, image);
+      return res;
+    } catch(e) {
+      return rejectWithValue(e);
+    }
+  }
+)
+
 export const refreshToken = createAsyncThunk(
   "/refreshToken",
   async function (_, { dispatch, rejectWithValue }) {
@@ -42,10 +57,10 @@ export const refreshToken = createAsyncThunk(
 
 const initialState: IUserState = {
   user: {
-    id: null,
-    user_name: null,
-    user_email: null,
-    avatar: null,
+    id: "",
+    user_name: "",
+    user_email: "",
+    avatar: "",
   },
   error: "",
   status: FetchStatus.LOADING,
@@ -63,10 +78,10 @@ const authSlice = createSlice({
     },
     clearUserData(state) {
       state.user = {
-        id: null,
-        user_name: null,
-        user_email: null,
-        avatar: null,
+        id: "",
+        user_name: "",
+        user_email: "",
+        avatar: "",
       };
       state.token = "";
       localStorage.removeItem("isLogged");
@@ -75,22 +90,41 @@ const authSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
+      .addCase(uploadAvatarAsync.pending, (state) => {
+        state.status = FetchStatus.LOADING;
+      })
+      .addCase(uploadAvatarAsync.fulfilled, (state, action: PayloadAction<any>) => {
+        state.status = FetchStatus.RESOLVED;
+        const {avatar} = action.payload;
+        state.user.avatar = avatar;
+      })
+      .addCase(uploadAvatarAsync.rejected, (state) => {
+        state.status = FetchStatus.REJECTED;
+        state.error = "Invalid file"
+      })
+
+
+
       .addCase(loginUser.pending, (state) => {
         state.status = FetchStatus.LOADING;
       })
       .addCase(loginUser.fulfilled, (state, action: PayloadAction<any>) => {
         state.status = FetchStatus.RESOLVED;
-        const { id, user_name, user_email, accessToken } = action.payload;
+        const { id, user_name, user_email, avatar, accessToken } = action.payload;
         state.user.user_email = user_email;
         state.user.user_name = user_name;
         state.user.id = id;
         state.token = accessToken;
+        state.user.avatar = avatar;
         authSlice.caseReducers.setUserData(state, action);
       })
       .addCase(loginUser.rejected, (state) => {
         state.status = FetchStatus.REJECTED;
         state.error = "Invalid email or password";
       })
+
+
+
       .addCase(logoutUser.pending, (state) => {
         state.status = FetchStatus.LOADING;
       })
@@ -102,15 +136,19 @@ const authSlice = createSlice({
         state.status = FetchStatus.REJECTED;
         state.error = action.payload.error;
       })
+
+
+      
       .addCase(refreshToken.pending, (state) => {
         state.status = FetchStatus.LOADING;
       })
       .addCase(refreshToken.fulfilled, (state, action: PayloadAction<any>) => {
         state.status = FetchStatus.RESOLVED;
-        const { id, user_name, user_email, accessToken } = action.payload;
+        const { id, user_name, user_email, avatar, accessToken } = action.payload;
         state.user.user_email = user_email;
         state.user.user_name = user_name;
         state.user.id = id;
+        state.user.avatar = avatar
         state.token = accessToken;
         authSlice.caseReducers.setUserData(state, action);
       })

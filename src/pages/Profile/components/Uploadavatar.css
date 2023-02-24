@@ -1,6 +1,6 @@
 
 
-.upload_video_button{
+.upload_avatar_button label{
     width: 120px;
     height: 40px;
     margin: 20px;
@@ -16,7 +16,7 @@
     padding: 10px;
 }
 
-.upload_video_button:hover{
+.upload_avatar_button:hover{
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     background-color: #AEC9A9;
     color: #22242B;

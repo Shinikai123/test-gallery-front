@@ -10,7 +10,6 @@ type Props = {
 };
 
 const UploadVideo: FC<Props> = ({setVideos, videos}) => {
-    
     const fileRef = useRef(null);
     const {userId} = useParams();
 
@@ -18,6 +17,8 @@ const UploadVideo: FC<Props> = ({setVideos, videos}) => {
         e.preventDefault();
         if(e.target.files && e.target.files.length > 0) {
             const file = e.target.files[0];
+            console.log(e.target.files);
+            
             if(!file.type.includes('video')) {
                 return null;
             }   else {

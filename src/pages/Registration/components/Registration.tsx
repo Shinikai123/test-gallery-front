@@ -8,7 +8,6 @@ import { IRegisterUser} from '../../../store/types/RegisterUser';
 import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
 import authService from '../../../services/authService';
 import { loginUser } from '../../../store/reducers/authSlice';
-import UploadAvatar from "./UploadAvatar"
 import "./Registration.css"
 import { IUser } from '../../../interfaces/User';
 
@@ -42,7 +41,7 @@ const Registration : FC<any> = ({avatar, setAvatar}) => {
     });
     const onSubmit = async (data) => {
         setIsLoading(true);
-        const {user_name, user_email, password} = data;
+        const {user_name, user_email, password, avatar} = data;
         try {
             const response = await authService.registerUser({
                 user_name, user_email, password,
@@ -84,10 +83,6 @@ const Registration : FC<any> = ({avatar, setAvatar}) => {
                     <label>The required password length must be between 6 and 40 characters</label>
                     <input  className="input_string" type="text" placeholder="Confirm Password" required {...register('confirmPassword')}>
                     </input>
-                    <UploadAvatar
-                    avatar={avatar}
-                    setAvatar={setAvatar}
-                    />
                     <input className="submit_button" type="submit" value="Sign Up"></input>
                 </form>
                 <Link to="/login">Have an account? Just sign in</Link>

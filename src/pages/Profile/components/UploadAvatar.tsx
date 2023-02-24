@@ -1,19 +1,17 @@
 import { FC, useRef } from "react";
 import { useParams } from "react-router-dom";
+import { useAppDispatch } from "../../../hooks/redux";
 import { IUser } from "../../../interfaces/User";
 import userService from "../../../services/userService";
+import { uploadAvatarAsync } from "../../../store/reducers/authSlice";
 import "./UploadAvatar.css";
 
 
-type Props = {
-    setAvatar: (avatar: IUser[]) => void;
-    avatar: IUser[];
-};
-
-const UploadAvatar: FC<Props> = ({setAvatar, avatar}) => {
+const UploadAvatar: FC = () => {
     
     const fileRef = useRef(null);
     const {userId} = useParams();
+    const dispatch = useAppDispatch();
 
     const handleAvatarUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
         e.preventDefault();
@@ -23,8 +21,7 @@ const UploadAvatar: FC<Props> = ({setAvatar, avatar}) => {
                 return null;
             }   else {
                 try{
-                    const response = await userService.uploadAvatar(userId!, file);
-                    setAvatar([response, ...avatar]);
+                    await dispatch(uploadAvatarAsync(file));
                 } catch (e) {
                     console.log(e)
                 }
@@ -33,8 +30,8 @@ const UploadAvatar: FC<Props> = ({setAvatar, avatar}) => {
     };
 
     return(
-        <div>
-            <label htmlFor="upload_button" className="upload_avatar_button">
+        <div >
+            <label htmlFor="upload_button">
                 Upload Avatar
             </label>
             <input id="upload_button" type="file" accept="image/*" ref={fileRef} onChange={handleAvatarUpload} placeholder="Upload Avatar"></input>
