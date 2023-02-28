@@ -23,7 +23,7 @@ class UserService extends ApiService {
     formData.append("file", file);
     return this._post(`users/avatar/${userId}`, formData, {
       headers: {
-        "Content-Type": " multipart/form-data",
+        "Content-Type": "multipart/form-data",
       },
     });
   };

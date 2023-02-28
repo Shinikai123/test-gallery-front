@@ -5,6 +5,7 @@ abstract class ApiService {
     baseURL: `http://localhost:8000/`,
     withCredentials: true,
     headers: {
+      "Content-Type": "application/json",
     },
   });
 
@@ -43,14 +44,14 @@ abstract class ApiService {
   >(
     url: string,
     body: BodyType,
-    params?: ParamsType,
+    params?: any,
     token?: string
   ): Promise<ReturnType> => {
     try {
       if (token) {
         this._setAuthToken(token);
       }
-      const res = await this.instance.post(url, body, { params });
+      const res = await this.instance.post(url, body, { ...params} );
       return res.data;
     } catch (error) {
       return Promise.reject(this._handleError(error));

@@ -41,7 +41,7 @@ const Profile: FC<any> = () => {
                 </div>
                 <div className="profile_account_info_right">
                 <div className="profile_account_info_right_header">
-                    {/* <UploadAvatar/> */}
+                    <UploadAvatar/>
                     <img className="profile_account_avatar" src={user?.avatar || Avatar}></img>
                     <button className="profile_account_info_right_header_button">Give an Access</button>
                 </div>

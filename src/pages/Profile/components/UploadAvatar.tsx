@@ -17,8 +17,8 @@ const UploadAvatar: FC = () => {
         e.preventDefault();
         if(e.target.files && e.target.files.length > 0) {
             const file = e.target.files[0];
-            if(!file.type.includes('image')) {
-                return null;
+            if(!file.type.includes("image")) {
+                return ;
             }   else {
                 try{
                     await dispatch(uploadAvatarAsync(file));
@@ -34,7 +34,7 @@ const UploadAvatar: FC = () => {
             <label htmlFor="upload_button">
                 Upload Avatar
             </label>
-            <input id="upload_button" type="file" accept="image/*" ref={fileRef} onChange={handleAvatarUpload} placeholder="Upload Avatar"></input>
+            <input id="upload_button" type="file" accept=" .jpg, .jpeg, .png " ref={fileRef} onChange={handleAvatarUpload} placeholder="Upload Avatar"></input>
         </div>
         )
 

@@ -28,14 +28,15 @@ export const loginUser = createAsyncThunk(
 );
 
 export const uploadAvatarAsync = createAsyncThunk(
-  "upload/uploadImage",
-  async (image: File, { getState,rejectWithValue}) => {
+  "upload/uploadAvatar",
+  async (image: File, { getState, rejectWithValue}) => {
     const userId = (getState() as RootState).auth.user.id;
+    console.log(getState())
     try{
       const res = await userService.uploadAvatar(userId, image);
       return res;
-    } catch(e) {
-      return rejectWithValue(e);
+    } catch(error) {
+      return rejectWithValue(error);
     }
   }
 )
@@ -84,7 +85,6 @@ const authSlice = createSlice({
         avatar: "",
       };
       state.token = "";
-      localStorage.removeItem("isLogged");
       localStorage.removeItem("token");
     },
   },
