@@ -13,6 +13,8 @@ const App: FC = () => {
     const isLoggedLocalStorage = JSON.parse(
       localStorage.getItem("isLogged") as string
     );
+    console.log(isLoggedLocalStorage);
+    
     console.log(isLoggedLocalStorage, user.id);
 
     if (!user.id && isLoggedLocalStorage) {

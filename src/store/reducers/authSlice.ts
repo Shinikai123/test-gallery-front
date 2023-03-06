@@ -27,25 +27,27 @@ export const loginUser = createAsyncThunk(
   }
 );
 
-export const uploadAvatarAsync = createAsyncThunk(
-  "upload/uploadAvatar",
-  async (image: File, { getState, rejectWithValue}) => {
-    const userId = (getState() as RootState).auth.user.id;
-    console.log(getState())
-    try{
-      const res = await userService.uploadAvatar(userId, image);
-      return res;
-    } catch(error) {
-      return rejectWithValue(error);
-    }
-  }
-)
+// export const uploadAvatarAsync = createAsyncThunk(
+//   "upload/uploadAvatar",
+//   async (image: File, { getState, rejectWithValue}) => {
+//     const userId = (getState() as RootState).auth.user.id;
+//     console.log(getState())
+//     try{
+//       const res = await userService.uploadAvatar(userId, image);
+//       return res;
+//     } catch(error) {
+//       return rejectWithValue(error);
+//     }
+//   }
+// )
 
 export const refreshToken = createAsyncThunk(
   "/refreshToken",
   async function (_, { dispatch, rejectWithValue }) {
     try {
       const res = await AuthService.refreshToken();
+      console.log(res);
+      
       setTimeout(() => {
         dispatch(refreshToken());
       }, res.expires_in - 5000);
@@ -90,18 +92,18 @@ const authSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(uploadAvatarAsync.pending, (state) => {
-        state.status = FetchStatus.LOADING;
-      })
-      .addCase(uploadAvatarAsync.fulfilled, (state, action: PayloadAction<any>) => {
-        state.status = FetchStatus.RESOLVED;
-        const {avatar} = action.payload;
-        state.user.avatar = avatar;
-      })
-      .addCase(uploadAvatarAsync.rejected, (state) => {
-        state.status = FetchStatus.REJECTED;
-        state.error = "Invalid file"
-      })
+      // .addCase(uploadAvatarAsync.pending, (state) => {
+      //   state.status = FetchStatus.LOADING;
+      // })
+      // .addCase(uploadAvatarAsync.fulfilled, (state, action: PayloadAction<any>) => {
+      //   state.status = FetchStatus.RESOLVED;
+      //   const {avatar} = action.payload;
+      //   state.user.avatar = avatar;
+      // })
+      // .addCase(uploadAvatarAsync.rejected, (state) => {
+      //   state.status = FetchStatus.REJECTED;
+      //   state.error = "Invalid file"
+      // })
 
 
 

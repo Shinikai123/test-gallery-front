@@ -34,6 +34,7 @@ const Login: FC = () => {
 
             if(!response.error) {
                 localStorage.setItem("token", response.accessToken);
+                localStorage.setItem("isLogged", "true");
                 
                 
                 await dispatch(loginUser(data));

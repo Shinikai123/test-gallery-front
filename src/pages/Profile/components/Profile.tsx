@@ -14,6 +14,7 @@ const Profile: FC<any> = () => {
     const {user_name, user_email, avatar} = useAppSelector(
         (state) => state.auth.user
     )
+
     return(
         <div className="profile_background">
             <Header/>
@@ -42,7 +43,7 @@ const Profile: FC<any> = () => {
                 <div className="profile_account_info_right">
                 <div className="profile_account_info_right_header">
                     <UploadAvatar/>
-                    <img className="profile_account_avatar" src={user?.avatar || Avatar}></img>
+                    <img className="profile_account_avatar" src={avatar}></img>
                     <button className="profile_account_info_right_header_button">Give an Access</button>
                 </div>
                     <div className="profile_account_info_right_content">
