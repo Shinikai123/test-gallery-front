@@ -29,6 +29,7 @@ const Header : FC<Props> = ({items}) => {
     const handleLogout =  async () => {
         try{
             localStorage.removeItem('token');
+            localStorage.removeItem("isLogged");
             dispatch(logoutUser());
             navigate("/login");
         } catch (e) {
@@ -70,10 +71,10 @@ const Header : FC<Props> = ({items}) => {
                 <img className="avatar" src={ avatar || Avatar}></img>
                 
                 <Link onClick={handleLogout}to="/login">
-                    <button className="button_log_out">Log out</button>
+                    <button className="header_button">Log out</button>
                 </Link>
                 <Link to={`/profile/${id}`}>
-                    <button className="button_profile"> Profile</button>
+                    <button className="header_button"> Profile</button>
                 </Link>
                 </div>
             </div>

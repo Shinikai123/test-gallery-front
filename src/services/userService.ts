@@ -23,7 +23,7 @@ class UserService extends ApiService {
     
     const formData = new FormData();
     formData.append("file", file);
-    return this._post(`users/avatar/94e0041f-59ee-4194-8f4b-4318f8f114b3`, formData, {
+    return this._post(`users/avatar/${userId}`, formData, {
       headers: {
         "Content-Type": "multipart/form-data",
       },

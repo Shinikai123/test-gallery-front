@@ -29,7 +29,7 @@ const Profile: FC<any> = () => {
                 <div className="profile_account_info_left">
                     <div className="profile_account_info_left_header">
                         <p className="profile_account_info_left_header_title">My account</p>
-                        <button className="profile_account_info_left_header_button">Edit Profile</button>
+                        
                     </div>
                     <div className="profile_account_info_left_content">
                         <p>User Information</p>
@@ -43,15 +43,19 @@ const Profile: FC<any> = () => {
                 <div className="profile_account_info_right">
                 <div className="profile_account_info_right_header">
                     <UploadAvatar/>
+                    {avatar ? (
                     <img className="profile_account_avatar" src={avatar}></img>
-                    <button className="profile_account_info_right_header_button">Give an Access</button>
+                    ) : (    
+                    <img className="profile_account_avatar" src={Avatar}></img>
+                    )}
+                    <button className="profile_account_info_right_header_button">Edit Profile</button>
                 </div>
                     <div className="profile_account_info_right_content">
                         <div className="friends_info">
                             <label>22</label>
                             <p>Friends</p>
                         </div>
-                        <div className="account_video">
+                        <div className="video_info">
                             <label>8</label>
                             <p>Videos</p>
                         </div>

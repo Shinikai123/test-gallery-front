@@ -33,8 +33,8 @@ const UploadAvatar: FC = () => {
     };
 
     return(
-        <div >
-            <label htmlFor="upload_button" className="upload_avatar_button">
+        <div  className="upload_avatar_button">
+            <label htmlFor="upload_button">
                 Upload Avatar
             </label>
             <input id="upload_button" type="file" accept="image*/" ref={fileRef} onChange={handleAvatarUpload} placeholder="Upload Avatar"></input>

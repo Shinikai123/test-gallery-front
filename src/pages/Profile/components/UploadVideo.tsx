@@ -33,8 +33,8 @@ const UploadVideo: FC<Props> = ({setVideos, videos}) => {
     };
 
     return(
-        <div>
-            <label htmlFor="upload_button" className="upload_video_button">
+        <div className="upload_video_button">
+            <label htmlFor="upload_button" >
                 Upload Video
             </label>
             <input id="upload_button" type="file" accept="video/*" ref={fileRef} onChange={handleVideoUpload} placeholder="Upload Video"></input>
