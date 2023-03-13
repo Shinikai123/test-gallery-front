@@ -48,6 +48,7 @@ const Registration : FC<any> = ({avatar, setAvatar}) => {
             });
             if(!response.error) {
                 localStorage.setItem("token", response.accessToken);
+                localStorage.setItem("isLogged", "true")
                 dispatch(loginUser(data));
                 navigate(`/profile/${response.id}`);
             } else {

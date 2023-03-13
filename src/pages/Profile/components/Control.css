@@ -1,28 +1,26 @@
-.upload_video_button{
+.control_panel{
+    margin-top: 10px;
     display: flex;
-    text-align: center;
     justify-content: center;
-    align-items: center;
-    width: 160px;
-    height: 50px;
-    margin: 20px 20px 20px 0px;
+}
+
+.video_card_button{
+    width: 80px;
+    height: 30px;
+    margin: 10px;
     border: none;
     border-radius: 5px;
     outline: none;
     color: #F5F6F5;
     background-color: #83BA96;
+    font-size: 16px;
     cursor: pointer;
     transition: ease all .5s;
-    font-size: 20px;
 }
 
-.upload_video_button:hover{
+.video_card_button:hover{
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     background-color: #AEC9A9;
     color: #22242B;
     scale: 1.2;
-}
-
-input[type='file'] {
-    display: none;
 }

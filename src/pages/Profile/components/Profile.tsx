@@ -14,12 +14,12 @@ const Profile: FC<any> = () => {
     const {user_name, user_email, avatar} = useAppSelector(
         (state) => state.auth.user
     )
-
+    console.log(`avatar ${avatar}`)
     return(
         <div className="profile_background">
             <Header/>
                 <div className="account_title">
-                <h1>Hello, {user_name}</h1>
+                <h1>Hello, {user_name}!</h1>
                 <p>This is your profile page. Here you can check the info about you, add videos and set the access for other users.</p>
             </div>
             
@@ -32,10 +32,15 @@ const Profile: FC<any> = () => {
                         
                     </div>
                     <div className="profile_account_info_left_content">
-                        <p>User Information</p>
-                        <div className="profile_account_info_left_search_string">
-                        <label>Nickname : <div id="user_name">{user_name}</div></label>
-                        
+                        <h3>User Information</h3>
+                        <div id="user_name" className="profile_account_info_left_string">
+                            <p>Nickname :</p>
+                            <p> {user_name}</p>
+                        </div>
+
+                        <div id="user_email" className="profile_account_info_left_string">
+                            <p>Email :</p> 
+                            <p>{user_email}</p>
                         </div>
                         
                     </div>
@@ -67,6 +72,7 @@ const Profile: FC<any> = () => {
             </div>
         </div>
     )
+    
 }
 
 export default Profile;

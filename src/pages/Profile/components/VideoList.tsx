@@ -32,7 +32,7 @@ const VideoList: FC = () => {
  return(
     <div>
         <div className="video_list_header">
-    <label className="video_list_header_label">Videos</label>
+    <label className="video_list_header_label">Your videos</label>
     <form>
         <UploadVideo setVideos={setVideos} videos={videos || []}/>
     </form>

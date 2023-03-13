@@ -19,7 +19,6 @@ class UserService extends ApiService {
   };
 
   uploadAvatar = (userId: string, file: File): Promise<any> => {
-    console.log(11111111111);
     
     const formData = new FormData();
     formData.append("file", file);

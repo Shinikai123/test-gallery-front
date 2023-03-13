@@ -3,6 +3,7 @@ import videoService from "../../../services/videoService";
 import userService from "../../../services/userService";
 import { IVideo } from "../../../interfaces/Video";
 import { IUser } from "../../../interfaces/User";
+import "./Control.css";
 
 type Props = {
     setVideos: ( IVideos: IVideo[]) => void;
@@ -78,7 +79,7 @@ const Control: FC<Props> =({
 
 
   return(
-    <form>
+    <form className="control_panel">
             <input className="video_card_button" type="button" value="open" onClick={handleOpenUsers}></input>
             <input className="video_card_button" type="button" value="delete" onClick={handleDeleteVideo}></input>
             {isEdit ? (
