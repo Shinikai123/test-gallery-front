@@ -1,4 +1,4 @@
-import React, { FC, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 import Avatar from "../../../assets/avatar.png";
 import Header from "../../../shared/Header/index";
 import { IUser } from "../../../interfaces/User";
@@ -7,14 +7,30 @@ import "./Profile.css";
 import "./UploadAvatar.css";
 import VideoList from "./VideoList";
 import { useAppSelector } from "../../../hooks/redux";
+import userService from "../../../services/userService";
+import EditProfile from "./EditProfile";
 
-const Profile: FC<any> = () => {
-   
-    const [user, setUser] = useState<IUser | null>(null);
+type Props ={
+    setUsers: ( IUser: IUser[]) => void;
+    userId: string;
+    isEdit: boolean;
+    userName: string;
+    setIsEdit: (bool: boolean) => void;
+}
+
+const Profile: FC<Props> = ({userId, userName, isEdit, setIsEdit}) => {
+    const [users, setUsers] = useState<IUser | null>(null);
+    const [userNameValue, setUserNameValue] = useState(userName)
     const {user_name, user_email, avatar} = useAppSelector(
         (state) => state.auth.user
     )
+
+  const handleChangeName = (e) => {
+    setUserNameValue(e.target.value)
+  }
+
     console.log(`avatar ${avatar}`)
+    
     return(
         <div className="profile_background">
             <Header/>
@@ -33,11 +49,18 @@ const Profile: FC<any> = () => {
                     </div>
                     <div className="profile_account_info_left_content">
                         <h3>User Information</h3>
+                        {isEdit ? (
+                        <div id="user_name" className="profile_account_info_left_string">
+                            <p>Nickname :</p>
+                            <input value={userNameValue} onChange={handleChangeName}> {user_name}</input>
+                        </div>
+                        ) : (
                         <div id="user_name" className="profile_account_info_left_string">
                             <p>Nickname :</p>
                             <p> {user_name}</p>
                         </div>
-
+                        )}
+                        
                         <div id="user_email" className="profile_account_info_left_string">
                             <p>Email :</p> 
                             <p>{user_email}</p>
@@ -53,8 +76,15 @@ const Profile: FC<any> = () => {
                     ) : (    
                     <img className="profile_account_avatar" src={Avatar}></img>
                     )}
-                    <button className="profile_account_info_right_header_button">Edit Profile</button>
-                </div>
+                    <EditProfile
+                    users={users}
+                    setUSers={setUsers}
+                    userId={userId}
+                    isEdit={isEdit}
+                    userName={userName}
+                    setIsEdit={setIsEdit}
+                    userNameValue={userNameValue}/>
+                    </div>
                     <div className="profile_account_info_right_content">
                         <div className="friends_info">
                             <label>22</label>

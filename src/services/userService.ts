@@ -28,6 +28,10 @@ class UserService extends ApiService {
       },
     });
   };
+
+  updateUser = (userId: string, userName: string): Promise<string> => {
+    return this._post(`users/${userId}`, {userName})
+  }
 }
 
 export default new UserService();
