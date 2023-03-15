@@ -27,19 +27,19 @@ export const loginUser = createAsyncThunk(
   }
 );
 
-// export const uploadAvatarAsync = createAsyncThunk(
-//   "upload/uploadAvatar",
-//   async (image: File, { getState, rejectWithValue}) => {
-//     const userId = (getState() as RootState).auth.user.id;
-//     console.log(getState())
-//     try{
-//       const res = await userService.uploadAvatar(userId, image);
-//       return res;
-//     } catch(error) {
-//       return rejectWithValue(error);
-//     }
-//   }
-// )
+export const uploadAvatarAsync = createAsyncThunk(
+  "upload/uploadAvatar",
+  async (image: File, { getState, rejectWithValue}) => {
+    const userId = (getState() as RootState).auth.user.id;
+    console.log(getState())
+    try{
+      const res = await userService.uploadAvatar(userId, image);
+      return res;
+    } catch(error) {
+      return rejectWithValue(error);
+    }
+  }
+)
 
 export const refreshToken = createAsyncThunk(
   "/refreshToken",
@@ -92,18 +92,18 @@ const authSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      // .addCase(uploadAvatarAsync.pending, (state) => {
-      //   state.status = FetchStatus.LOADING;
-      // })
-      // .addCase(uploadAvatarAsync.fulfilled, (state, action: PayloadAction<any>) => {
-      //   state.status = FetchStatus.RESOLVED;
-      //   const {avatar} = action.payload;
-      //   state.user.avatar = avatar;
-      // })
-      // .addCase(uploadAvatarAsync.rejected, (state) => {
-      //   state.status = FetchStatus.REJECTED;
-      //   state.error = "Invalid file"
-      // })
+      .addCase(uploadAvatarAsync.pending, (state) => {
+        state.status = FetchStatus.LOADING;
+      })
+      .addCase(uploadAvatarAsync.fulfilled, (state, action: PayloadAction<any>) => {
+        state.status = FetchStatus.RESOLVED;
+        const {avatar} = action.payload;
+        state.user.avatar = avatar;
+      })
+      .addCase(uploadAvatarAsync.rejected, (state) => {
+        state.status = FetchStatus.REJECTED;
+        state.error = "Invalid file"
+      })
 
 
 
@@ -113,6 +113,8 @@ const authSlice = createSlice({
       .addCase(loginUser.fulfilled, (state, action: PayloadAction<any>) => {
         state.status = FetchStatus.RESOLVED;
         const { id, user_name, user_email, avatar, accessToken } = action.payload;
+        console.log(`login payload`)
+        console.log(action.payload)
         state.user.user_email = user_email;
         state.user.user_name = user_name;
         state.user.id = id;
@@ -147,6 +149,8 @@ const authSlice = createSlice({
       .addCase(refreshToken.fulfilled, (state, action: PayloadAction<any>) => {
         state.status = FetchStatus.RESOLVED;
         const { id, user_name, user_email, avatar, accessToken } = action.payload;
+        console.log(`refresh payload`)
+        console.log(action.payload)
         state.user.user_email = user_email;
         state.user.user_name = user_name;
         state.user.id = id;

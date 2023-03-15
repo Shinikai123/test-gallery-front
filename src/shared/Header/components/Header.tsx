@@ -68,8 +68,11 @@ const Header : FC<Props> = ({items}) => {
                 </div>
                 
                 <div className="auth_section">
-                <img className="avatar" src={ avatar || Avatar}></img>
-                
+                {localStorage.isLogged === true ? (
+                    <img className="avatar" src={ avatar }></img>
+                ) : (
+                    <img className="avatar" src={ Avatar }></img>
+                )}    
                 <Link onClick={handleLogout}to="/login">
                     <button className="header_button">Log out</button>
                 </Link>

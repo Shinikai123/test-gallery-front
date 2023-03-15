@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { useAppDispatch } from "../../../hooks/redux";
 import { IUser } from "../../../interfaces/User";
 import userService from "../../../services/userService";
-// import { uploadAvatarAsync } from "../../../store/reducers/authSlice";
+import { uploadAvatarAsync } from "../../../store/reducers/authSlice";
 import "./UploadAvatar.css";
 
 
@@ -11,6 +11,7 @@ const UploadAvatar: FC = () => {
     
     const fileRef = useRef(null);
     const {userId} = useParams();
+    const dispatch = useAppDispatch();
 
     const handleAvatarUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
         e.preventDefault();
@@ -22,8 +23,9 @@ const UploadAvatar: FC = () => {
                 return ;
             }   else {
                 try{
-                     const res = await userService.uploadAvatar(userId!,file);
-                    console.log(res);
+                    await dispatch(uploadAvatarAsync(file));
+                    //  const res = await userService.uploadAvatar(userId!,file);
+                    // console.log(res);
                     
                 } catch (e) {
                     console.log(e)
