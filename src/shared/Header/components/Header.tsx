@@ -23,6 +23,7 @@ const Header : FC<Props> = ({items}) => {
 
     useEffect(() => {
         setFilteredUsers(items);
+        console.log(items);
       }, [items]);
     
 
@@ -60,13 +61,24 @@ const Header : FC<Props> = ({items}) => {
                     </Link>
                 
                 </div>
+                <div className="search_string_section">
                 <SearchString
                 setFilteredUsers={setFilteredUsers}
                 arr={items}/>
-                <div>
-                    
+                <div className="user_list">
+                {filteredUsers &&
+                 filteredUsers.map((item) => (
+                    <div className="user_card" key={item.id}>
+                        <img src={item.avatar ?? Avatar}/>
+                        <Link to={`/profile/${item.id}`}>
+                        <p>{item.user_name}</p>
+                        </Link>
+                    </div>
+                ))}
+                </div>
                 </div>
                 
+              
                 <div className="auth_section">
                 {localStorage.isLogged === true ? (
                     <img className="avatar" src={ avatar }></img>

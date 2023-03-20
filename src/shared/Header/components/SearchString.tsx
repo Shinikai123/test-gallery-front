@@ -3,7 +3,7 @@ import { IUser } from "../../../interfaces/User";
 import userService from "../../../services/userService";
 import { useAppSelector } from "../../../hooks/redux";
 import Search from '../../../assets/search.png';
-
+import "./SearchString.css";
 
 type Props = {
     setFilteredUsers: (arr: IUser[]) => void;
@@ -20,8 +20,8 @@ const SearchString: FC<Props> = ({ setFilteredUsers, arr}) => {
             try{
                 const response = await userService.getUsers(token);
                 setUsers(response);
-            } catch (e) {
-                console.log(e);
+            } catch (error) {
+                console.log(error);
             }
         }
     };
@@ -48,7 +48,7 @@ const SearchString: FC<Props> = ({ setFilteredUsers, arr}) => {
 
 
   return(
-    <div >
+    <div>
         <form className="search_string">
             <input 
             value={searchQuery}
