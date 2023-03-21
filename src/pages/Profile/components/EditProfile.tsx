@@ -6,7 +6,7 @@ import userService from "../../../services/userService";
 
 type Props ={
     users: IUser[];
-    setUsers: ( IUser: IUser[]) => void;
+    setUsers: ( IUsers: IUser[]) => void;
     userId: string;
     isEdit: boolean;
     userName: string;

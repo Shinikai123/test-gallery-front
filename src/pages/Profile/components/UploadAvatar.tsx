@@ -24,8 +24,8 @@ const UploadAvatar: FC = () => {
             }   else {
                 try{
                     await dispatch(uploadAvatarAsync(file));
-                    //  const res = await userService.uploadAvatar(userId!,file);
-                    // console.log(res);
+                     const res = await userService.getAvatar(userId!);
+                    console.log(res);
                     
                 } catch (e) {
                     console.log(e)

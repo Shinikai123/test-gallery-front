@@ -9,6 +9,7 @@ import VideoList from "./VideoList";
 import { useAppSelector } from "../../../hooks/redux";
 import userService from "../../../services/userService";
 import EditProfile from "./EditProfile";
+import { IVideo } from "../../../interfaces/Video";
 
 type Props ={
     setUsers: ( IUser: IUser[]) => void;
@@ -21,6 +22,7 @@ type Props ={
 const Profile: FC<Props> = ({userId, userName, isEdit, setIsEdit}) => {
     const [users, setUsers] = useState<IUser | null>(null);
     const [userNameValue, setUserNameValue] = useState(userName)
+    const [videos, setVideos] = useState<IVideo[]>([]);
     const {user_name, user_email, avatar} = useAppSelector(
         (state) => state.auth.user
     )
@@ -77,7 +79,7 @@ const Profile: FC<Props> = ({userId, userName, isEdit, setIsEdit}) => {
                     <img className="profile_account_avatar" src={Avatar}></img>
                     )}
                     <EditProfile
-                    users={users}
+                    users={users || []}
                     setUSers={setUsers}
                     userId={userId}
                     isEdit={isEdit}

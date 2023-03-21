@@ -47,18 +47,13 @@
     font-weight:900;
 }
 
-.profile_avatar {
-    width: 60px;
-    height: 60px;
-    margin-right: 0;
-}
-
 .profile_account_avatar{
     position: relative;
     padding: 0px 10px 0px 10px;
     top: -40%;
     width: 140px;
     height: 140px;
+    border-radius: 50%;
 }
 
 
@@ -606,7 +601,10 @@
     top: -40%;
     width: 60px;
     height: 60px;
+    border: 1px solid black;
+    border-radius: 40px;
 }
+
 
 
 .profile_account{

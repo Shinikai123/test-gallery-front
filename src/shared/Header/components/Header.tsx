@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Logo from "../../../assets/Logo.png";
 import Title from "../../../assets/Title.png";
-import Avatar from "../../../assets/avatar.png"
+import Avatar from "../../../assets/avatar.png";
 import SearchString from "./SearchString";
 import "./Header.css"
 import { IUser } from "../../../interfaces/User";
@@ -69,7 +69,7 @@ const Header : FC<Props> = ({items}) => {
                 {filteredUsers &&
                  filteredUsers.map((item) => (
                     <div className="user_card" key={item.id}>
-                        <img src={item.avatar ?? Avatar}/>
+                        <img src={item.avatar || Avatar}/>
                         <Link to={`/profile/${item.id}`}>
                         <p>{item.user_name}</p>
                         </Link>
@@ -80,7 +80,7 @@ const Header : FC<Props> = ({items}) => {
                 
               
                 <div className="auth_section">
-                {localStorage.isLogged === true ? (
+                {avatar ? (
                     <img className="avatar" src={ avatar }></img>
                 ) : (
                     <img className="avatar" src={ Avatar }></img>
