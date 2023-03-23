@@ -40,21 +40,19 @@ const VideoList: FC = () => {
         <div className="video_list_header">
     <label className="video_list_header_label">Your videos</label>
     {pageAuth && (
-        <form>
             <UploadVideo setVideos={setVideos} videos={videos || []}/>
-        </form>
     )}
 
         </div>
         {videos?.length === 0 ? (
-            <h2>There is an empty video list. Fix it and upload something amazing!</h2>
+            <h2 className="video_list_title">There is an empty video list. Fix it and upload something amazing!</h2>
         ) : (
             <div className="video_list_container">
             {videos.map(video => {
                 return (
                 <div key={video.id}>
                     <VideoCard
-                    videos = {videos}
+                    videos = {videos || []}
                     setVideos = {setVideos}
                     title = {video.title}
                     id= {video.id}/> 

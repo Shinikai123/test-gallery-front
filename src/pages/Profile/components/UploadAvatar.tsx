@@ -13,8 +13,7 @@ const UploadAvatar: FC = () => {
     const {userId} = useParams();
     const dispatch = useAppDispatch();
 
-    const handleAvatarUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
-        e.preventDefault();
+    const handleAvatarUpload = async (e) => {
         if(e.target.files && e.target.files.length > 0) {
             const file = e.target.files[0];
             console.log(file);
@@ -25,7 +24,7 @@ const UploadAvatar: FC = () => {
                 try{
                     await dispatch(uploadAvatarAsync(file));
                      const res = await userService.getAvatar(userId!);
-                    console.log(res);
+                    // console.log(res);
                     
                 } catch (e) {
                     console.log(e)
@@ -35,11 +34,11 @@ const UploadAvatar: FC = () => {
     };
 
     return(
-        <div  className="upload_avatar_button">
-            <label htmlFor="upload_button">
+        <div  className="upload_avatar_button" onChange={handleAvatarUpload}>
+            <label htmlFor="upload_button_avatar">
                 Upload Avatar
             </label>
-            <input id="upload_button" type="file" accept="image*/" ref={fileRef} onChange={handleAvatarUpload} placeholder="Upload Avatar"></input>
+            <input id="upload_button_avatar" type="file" ref={fileRef} accept="image/*"  placeholder="Upload Avatar"></input>
         </div>
         )
 

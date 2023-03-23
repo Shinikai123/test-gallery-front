@@ -13,18 +13,17 @@ const UploadVideo: FC<Props> = ({setVideos, videos}) => {
     const fileRef = useRef(null);
     const {userId} = useParams();
 
-    const handleVideoUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
-        e.preventDefault();
+    const handleVideoUpload = async (e) => {
+        // e.preventDefault();
+        console.log('ftrgkjilyuty6u')
         if(e.target.files && e.target.files.length > 0) {
             const file = e.target.files[0];
-            console.log(e.target.files);
-            
-            if(!file.type.includes('video')) {
+            if(!file.type.includes("video")) {
                 return null;
             }   else {
                 try{
                     const response = await videoService.uploadVideo(userId!, file);
-                    setVideos([response, ...videos]);
+                    // setVideos([response, ...videos]);
                 } catch (e) {
                     console.log(e)
                 }
@@ -33,11 +32,11 @@ const UploadVideo: FC<Props> = ({setVideos, videos}) => {
     };
 
     return(
-        <div className="upload_video_button">
-            <label htmlFor="upload_button" >
+        <div className="upload_video_button" onChange={handleVideoUpload}>
+            <label htmlFor="upload_button_video" >
                 Upload Video
             </label>
-            <input id="upload_button" type="file" accept="video/*" ref={fileRef} onChange={handleVideoUpload} placeholder="Upload Video"></input>
+            <input id="upload_button_video" type="file" accept="video/*" ref={fileRef}  placeholder="Upload Video"></input>
             </div>
         )
 
