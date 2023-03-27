@@ -34,7 +34,7 @@ const UploadAvatar: FC = () => {
     };
 
     return(
-        <div  className="upload_avatar_button" onChange={handleAvatarUpload}>
+        <div  className="upload_avatar_button" onClick={handleAvatarUpload}>
             <label htmlFor="upload_button_avatar">
                 Upload Avatar
             </label>
